@@ -30,10 +30,12 @@ public class SocialEntityController extends AbstractController {
 		
 		SocialEEntity socialEntity = new Gson().fromJson(response, SocialEEntity.class);
 		
-		socialEntity.dtAbertura = convertDate(socialEntity.dtAbertura);
-		socialEntity.dtFundacao = convertDate(socialEntity.dtFundacao);
-		socialEntity.dtInclusao = convertDate(socialEntity.dtInclusao);
-		socialEntity.dtNascimentoResponsavel = convertDate(socialEntity.dtNascimentoResponsavel);
+		if (socialEntity != null) {
+			socialEntity.dtAbertura = convertDate(socialEntity.dtAbertura);
+			socialEntity.dtFundacao = convertDate(socialEntity.dtFundacao);
+			socialEntity.dtInclusao = convertDate(socialEntity.dtInclusao);
+			socialEntity.dtNascimentoResponsavel = convertDate(socialEntity.dtNascimentoResponsavel);
+		}
 		
 		return socialEntity;
 	}
