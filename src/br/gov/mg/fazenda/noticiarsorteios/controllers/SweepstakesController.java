@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
 
-public class SweepstakesController {
+public class SweepstakesController extends AbstractController {
 	public static HashMap<String, ArrayList<SweepstakeEntity>> findSweepstakes(String month, String year) {
 		String response = RequestController.request("sorteios/periodo/" + year + "/" + month, 8087);
 		//String response = RequestController.request("sorteiodoc/sorteios/periodo/" + year + "/" + month, 80);
@@ -25,6 +25,8 @@ public class SweepstakesController {
 		ArrayList<SweepstakeEntity> especial = new ArrayList<SweepstakeEntity>();
 		
 		for (SweepstakeEntity sweepstake : sweepstakes) {
+			configureSweepstake(sweepstake);
+			
 			switch (sweepstake.tpSorteio) {
 				case "ESTADUAL":
 					estadual.add(sweepstake);

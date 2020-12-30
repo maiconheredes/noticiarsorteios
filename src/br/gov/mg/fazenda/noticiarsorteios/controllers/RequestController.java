@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.Charset;
 
-public class RequestController {
+public class RequestController extends AbstractController {
 	public static final String USER = "maicon.lopes";
 	public static final String PASSWORD = "##########";
 	public static final String DOMAIN = "http://hesperides.fazenda.mg.gov.br";
@@ -24,7 +25,9 @@ public class RequestController {
 			HttpURLConnection connection = (HttpURLConnection) urlInstance.openConnection();
 			connection.setRequestProperty("accept", "application/json");
 			
-			BufferedReader input = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BufferedReader input = new BufferedReader(
+				new InputStreamReader(connection.getInputStream(), Charset.forName("UTF8"))
+			);
 			
 			String inputLine;
 			StringBuffer content = new StringBuffer();
