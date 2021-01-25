@@ -12,10 +12,17 @@ public abstract class AbstractController {
 	protected static void configureSweepstake(SweepstakeEntity sweepstake) {
 		sweepstake.dtPrevSorteio = convertDate(sweepstake.dtPrevSorteio);
 		sweepstake.dtPublicacao = convertDate(sweepstake.dtPublicacao);
-		sweepstake.extracaoLoteria.dtExtracao = convertDate(sweepstake.extracaoLoteria.dtExtracao);
-		sweepstake.controleBilhetagem.dtFimRefCompra = convertDate(sweepstake.controleBilhetagem.dtFimRefCompra);
-		sweepstake.controleBilhetagem.dtGeracaoBilhete = convertDate(sweepstake.controleBilhetagem.dtGeracaoBilhete);
-		sweepstake.controleBilhetagem.dtInicioRefCompra = convertDate(sweepstake.controleBilhetagem.dtInicioRefCompra);
+		
+		if (sweepstake.extracaoLoteria != null) {
+			sweepstake.extracaoLoteria.dtExtracao = convertDate(sweepstake.extracaoLoteria.dtExtracao);
+		}
+		
+		if (sweepstake.controleBilhetagem != null) {
+			sweepstake.controleBilhetagem.dtFimRefCompra = convertDate(sweepstake.controleBilhetagem.dtFimRefCompra);
+			sweepstake.controleBilhetagem.dtGeracaoBilhete = convertDate(sweepstake.controleBilhetagem.dtGeracaoBilhete);
+			sweepstake.controleBilhetagem.dtInicioRefCompra = convertDate(sweepstake.controleBilhetagem.dtInicioRefCompra);
+		}
+		
 		for (SummaryPremiumsEntity premiacao : sweepstake.sumarizacaoPremiacoes) {
 			premiacao.valorPremioParticipante = convertCurrenty(premiacao.valorPremioParticipante);
 			premiacao.valorPremioEntidadeSocial = convertCurrenty(premiacao.valorPremioEntidadeSocial);

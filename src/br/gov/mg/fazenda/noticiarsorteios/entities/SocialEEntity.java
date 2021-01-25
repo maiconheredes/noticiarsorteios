@@ -26,5 +26,7 @@ public class SocialEEntity {
 	public String siglaUF;
 	public String cdRegiaoFiscal;
 	public String nmMunicipio;
+	public String idPremiado;
+	public String cdRequisicaoPremio;
 	public ArrayList<OccupationAreaEntity> areasAtuacao;
 }

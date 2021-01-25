@@ -1,9 +1,13 @@
 package br.gov.mg.fazenda.test;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.controllers.AbstractController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.LocationController;
+import br.gov.mg.fazenda.noticiarsorteios.controllers.PaymentRequestController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.PremiumController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.RequestController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.SocialEntityController;
@@ -37,9 +41,9 @@ public class Test extends AbstractController {
 		
 		//SweepstakesController.findSweepstakes("12", "2020");
 		
-		for (LocationEntity location : LocationController.findLocations("REGIONAL")) {
+		/*for (LocationEntity location : LocationController.findLocations("REGIONAL")) {
 			System.out.println("location: " + location.id);
-		}
+		}*/
 		
 		/*for (PremiumEntity premium : PremiumController.findPremiums("1484", "3101")) {
 			System.out.println("vlrPremioPartic: " + premium.vlrPremioPartic);
@@ -51,5 +55,10 @@ public class Test extends AbstractController {
 		for (SocialEEntity social : result.content) {
 			System.out.println(SocialEntityController.findSocialEntity(social.cnpj).email);
 		}*/
+		
+		// System.out.println(PaymentRequestController.findPremiumDetail("22737746000115", "732783").chaveAcesso);
+		
+		System.out.println(NumberFormat.getCurrencyInstance(new Locale("pt", "BR"))
+				.format(Float.parseFloat("0")));
 	}
 }

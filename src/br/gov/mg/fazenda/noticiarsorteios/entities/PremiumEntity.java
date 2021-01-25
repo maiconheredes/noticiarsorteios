@@ -4,4 +4,5 @@ public class PremiumEntity {
 	public int qtPremio;
 	public String vlrPremioPartic;
 	public String vlrPremioEntidSocial;
+	public String nmEntidadeSocial;
 }
