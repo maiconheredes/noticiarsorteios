@@ -9,7 +9,7 @@ import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
 
 public class SweepstakesController extends AbstractController {
 	public static HashMap<String, ArrayList<SweepstakeEntity>> findSweepstakes(String month, String year) {
-		String response = RequestController.request("sorteios/periodo/" + year + "/" + month, 8087);
+		String response = RequestController.request("sorteios/periodo/" + year + "/" + month, 8087, "GET", "");
 		//String response = RequestController.request("sorteiodoc/sorteios/periodo/" + year + "/" + month, 80);
 
 		SweepstakeEntity[] sweepstakes = new Gson().fromJson(response, SweepstakeEntity[].class);

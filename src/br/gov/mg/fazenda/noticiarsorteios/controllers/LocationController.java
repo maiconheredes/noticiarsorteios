@@ -15,7 +15,7 @@ public class LocationController extends AbstractController {
 		ArrayList<LocationEntity> locations = new ArrayList<LocationEntity>();
 		
 		if (tpSorteio.equals("MUNICIPAL")) {
-			String response = RequestController.request("municipiosregioesfiscais", 8084);
+			String response = RequestController.request("municipiosregioesfiscais", 8084, "GET", "");
 			CityEntity[] cities = new Gson().fromJson(response, CityEntity[].class);
 			
 			for (CityEntity city : cities) {
@@ -27,7 +27,7 @@ public class LocationController extends AbstractController {
 				locations.add(location);
 			}
 		} else if (tpSorteio.equals("REGIONAL")) {
-			String response = RequestController.request("regioesfiscais", 8084);
+			String response = RequestController.request("regioesfiscais", 8084, "GET", "");
 			
 			RegionalEntity[] regionals = new Gson().fromJson(response, RegionalEntity[].class);
 			

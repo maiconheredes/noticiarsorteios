@@ -1,15 +1,13 @@
 package br.gov.mg.fazenda.noticiarsorteios.entities;
 
-import java.util.ArrayList;
-
 public class PremiumDetailEntity {
+	public String idPremiado;
 	public String nrSorteio;
 	public String tpSorteio;
-	public String vlrPremioPartic;
-	public String stPremioPartic;
+	public String vlrPremioEntidSocial;
+	public String cdStatusPremio;
+	public String dsStatusPremio;
 	public String dtRealizSorteio;
-	public String nrBilhete;
-	public String chaveAcesso;
-	public ArrayList<PremiumEntity> entidadesSociaisPremiadas;
-	public ArrayList<PaymentRequestEntity> historicoRequisicoesPagamento;
+	public String dtPrazoRequerimento;
+	public String dtUltRequisicao;
 }

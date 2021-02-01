@@ -31,6 +31,10 @@ public abstract class AbstractController {
 			premiacao.valorPremioParticipante = convertCurrenty(premiacao.valorPremioParticipante);
 			premiacao.valorPremioEntidadeSocial = convertCurrenty(premiacao.valorPremioEntidadeSocial);
 		}
+		for (SummaryPremiumsEntity premiacao : sweepstake.sumarizacaoPremiacoesParticipantesEntidadesSociais) {
+			premiacao.valorPremioParticipante = convertCurrenty(premiacao.valorPremioParticipante);
+			premiacao.valorPremioEntidadeSocial = convertCurrenty(premiacao.valorPremioEntidadeSocial);
+		}
 	}
 	
 	protected static String convertCurrenty(String currenty) {

@@ -21,4 +21,5 @@ public class SweepstakeEntity {
 	public SweepstakeTotalsEntity totaisSorteio;
 	public ArrayList<SummaryPremiumsEntity> sumarizacaoPremiacoes;
 	public ArrayList<SummaryPremiumsEntity> sumarizacaoPremiacoesEntidadesSociais;	
+	public ArrayList<SummaryPremiumsEntity> sumarizacaoPremiacoesParticipantesEntidadesSociais;
 }

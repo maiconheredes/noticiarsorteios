@@ -18,7 +18,7 @@ public class SocialEntityController extends AbstractController {
 		url += "&page=" + page;
 		url += "&size=20";
 		
-		String response = RequestController.request(url, 8085);
+		String response = RequestController.request(url, 8085, "GET", "");
 		
 		ResultSocialEEntity result = new Gson().fromJson(response, ResultSocialEEntity.class);
 		
@@ -26,7 +26,7 @@ public class SocialEntityController extends AbstractController {
 	}
 	
 	public static SocialEEntity findSocialEntity(String cnpj) {
-		String response = RequestController.request("entidadessociais/" + cnpj, 8085);
+		String response = RequestController.request("entidadessociais/" + cnpj, 8085, "GET", "");
 		
 		SocialEEntity socialEntity = new Gson().fromJson(response, SocialEEntity.class);
 		

@@ -10,7 +10,7 @@ public class PremiumController extends AbstractController {
 	public static ArrayList<PremiumEntity> findPremiums(String idSweepstake, String idLocation) {
 		String response = RequestController.request(
 			"sorteios/" + idSweepstake + "/premiacoes/" + idLocation, 
-			8087
+			8087, "GET", ""
 		);
 		PremiumEntity[] originalPremiums = new Gson().fromJson(response, PremiumEntity[].class);
 		

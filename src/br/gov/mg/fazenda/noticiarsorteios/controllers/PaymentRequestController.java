@@ -16,7 +16,7 @@ public class PaymentRequestController extends AbstractController {
 	public static ArrayList<BankEntity> findBanks() {
 		ArrayList<BankEntity> banks = new ArrayList<BankEntity>();
 		
-		String response = RequestController.request("pagamentos/bancos", 8095);
+		String response = RequestController.request("pagamentos/bancos", 8095, "GET", "");
 		
 		BankEntity[] result = new Gson()
 				.fromJson(response, BankEntity[].class);
@@ -40,7 +40,7 @@ public class PaymentRequestController extends AbstractController {
 		
 		String response1 = RequestController.request(
 			"sorteios/premiado/entidadesocial/" + cnpj + "/" + cdRequisicao,
-			8087
+			8087, "GET", ""
 		);
 		
 		SocialEEntity socialE = new Gson()
@@ -48,27 +48,42 @@ public class PaymentRequestController extends AbstractController {
 		
 		if (socialE != null) {
 			String response2 = RequestController.request(
-				"sorteios/premiado/detalhe/" + socialE.idPremiado,
-				8087
+				"sorteios/premiado/entidadesocial/detalhe/" + cnpj + "/" + socialE.idPremiado,
+				8087, "GET", ""
 			);
 				
 			premiumDetail = new Gson().fromJson(response2, PremiumDetailEntity.class);
 			
 			if (premiumDetail != null) {
+				premiumDetail.idPremiado = socialE.idPremiado;
 				premiumDetail.dtRealizSorteio = convertDate(premiumDetail.dtRealizSorteio);
-				premiumDetail.vlrPremioPartic = convertCurrenty(premiumDetail.vlrPremioPartic);
-				
-				for (PremiumEntity premiumEntity : premiumDetail.entidadesSociaisPremiadas) {
-					premiumEntity.vlrPremioEntidSocial = convertCurrenty(premiumEntity.vlrPremioEntidSocial);
-					premiumEntity.vlrPremioPartic = convertCurrenty(premiumEntity.vlrPremioPartic);					
-				}
-				
-				for (PaymentRequestEntity paymentRequest : premiumDetail.historicoRequisicoesPagamento) {
-					paymentRequest.dtRequisicao = convertDate(paymentRequest.dtRequisicao);
-				}
+				premiumDetail.vlrPremioEntidSocial = convertCurrenty(premiumDetail.vlrPremioEntidSocial);
 			} else return null;
 		} else return null;	
 		
 		return premiumDetail;
+	}
+	
+	public static Boolean createPayment(
+		String cdAgencia, String cdBanco, String dvContaBancaria, String idEntidadeSocial,
+		String idPremiado, String nrContaBancaria, String tipoContaBancaria
+	) {		
+		String pgtoPremioDTO = "{";
+		pgtoPremioDTO += "\"cdAgencia\": \"" + cdAgencia +"\",";
+		pgtoPremioDTO += "\"cdBanco\": \"" + cdBanco +"\",";
+		pgtoPremioDTO += "\"dvContaBancaria\": \"" + dvContaBancaria +"\",";
+		pgtoPremioDTO += "\"idEntidadeSocial\": \"" + idEntidadeSocial +"\",";
+		pgtoPremioDTO += "\"idPremiado\": \"" + idPremiado +"\",";
+		pgtoPremioDTO += "\"nrContaBancaria\": \"" + nrContaBancaria +"\",";
+		pgtoPremioDTO += "\"tipoContaBancaria\": \"" + tipoContaBancaria +"";
+		pgtoPremioDTO = "}";
+		
+		try {
+			RequestController.request("pagamentos", 8095, "POST", pgtoPremioDTO);	
+		} catch (Exception exception) {
+			return false;
+		}
+		
+		return true;
 	}
 }
