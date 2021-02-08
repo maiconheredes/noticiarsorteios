@@ -27,20 +27,22 @@ public class SweepstakesController extends AbstractController {
 		for (SweepstakeEntity sweepstake : sweepstakes) {
 			configureSweepstake(sweepstake);
 			
-			switch (sweepstake.tpSorteio) {
-				case "ESTADUAL":
-					estadual.add(sweepstake);
-					break;
-				case "REGIONAL":
-					regional.add(sweepstake);
-					break;
-				case "MUNICIPAL":
-					municipal.add(sweepstake);
-					break;
-				case "ESPECIAL":
-				default:
-					especial.add(sweepstake);
-					break;
+			if (sweepstake.controleBilhetagem != null) {
+				switch (sweepstake.tpSorteio) {
+					case "ESTADUAL":
+						estadual.add(sweepstake);
+						break;
+					case "REGIONAL":
+						regional.add(sweepstake);
+						break;
+					case "MUNICIPAL":
+						municipal.add(sweepstake);
+						break;
+					case "ESPECIAL":
+					default:
+						especial.add(sweepstake);
+						break;
+				}
 			}
 		}
 		

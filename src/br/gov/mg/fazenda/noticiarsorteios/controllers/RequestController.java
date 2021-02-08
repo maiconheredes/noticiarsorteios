@@ -7,6 +7,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.security.AuthProvider;
 
 public class RequestController extends AbstractController {
 	public static final String USER = "maicon.lopes";
@@ -28,7 +29,6 @@ public class RequestController extends AbstractController {
 			connection.setRequestProperty("Content-Type", "application/json");
 			connection.setRequestProperty("accept", "application/json");
 			
-
 			if (method.equals("POST")) {
 				connection.setDoOutput(true);
 				connection.setRequestMethod(method);

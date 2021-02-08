@@ -68,7 +68,7 @@ public class Test extends AbstractController {
 		/*System.out.println(PaymentRequestController.findPremiumDetail("22737746000115",
 		"732783").chaveAcesso);*/
 		
-		//PaymentRequestController.createPayment();
+		//PaymentRequestController.createPayment("1501", "");
 
 		//System.out.println(NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(Float.parseFloat("0")));
 	}

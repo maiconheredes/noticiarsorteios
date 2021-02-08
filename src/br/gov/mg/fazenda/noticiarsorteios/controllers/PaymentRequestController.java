@@ -68,6 +68,7 @@ public class PaymentRequestController extends AbstractController {
 		String cdAgencia, String cdBanco, String dvContaBancaria, String idEntidadeSocial,
 		String idPremiado, String nrContaBancaria, String tipoContaBancaria
 	) {		
+		String response = null;
 		String pgtoPremioDTO = "{";
 		pgtoPremioDTO += "\"cdAgencia\": \"" + cdAgencia +"\",";
 		pgtoPremioDTO += "\"cdBanco\": \"" + cdBanco +"\",";
@@ -75,15 +76,19 @@ public class PaymentRequestController extends AbstractController {
 		pgtoPremioDTO += "\"idEntidadeSocial\": \"" + idEntidadeSocial +"\",";
 		pgtoPremioDTO += "\"idPremiado\": \"" + idPremiado +"\",";
 		pgtoPremioDTO += "\"nrContaBancaria\": \"" + nrContaBancaria +"\",";
-		pgtoPremioDTO += "\"tipoContaBancaria\": \"" + tipoContaBancaria +"";
-		pgtoPremioDTO = "}";
+		pgtoPremioDTO += "\"tipoContaBancaria\": \"" + tipoContaBancaria +"\"";
+		pgtoPremioDTO += "}";
 		
 		try {
-			RequestController.request("pagamentos", 8095, "POST", pgtoPremioDTO);	
+			response = RequestController.request("pagamentos", 8095, "POST", pgtoPremioDTO);
 		} catch (Exception exception) {
 			return false;
 		}
 		
-		return true;
+		if (response != null) {
+			return true;
+		}
+		
+		return false;
 	}
 }
