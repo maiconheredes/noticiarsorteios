@@ -18,6 +18,7 @@ import br.gov.mg.fazenda.noticiarsorteios.entities.ResultSocialEEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SocialEEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SummaryPremiumsEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Env;
 
 public class Test extends AbstractController {
 	public static void main(String[] args) {
@@ -64,9 +65,11 @@ public class Test extends AbstractController {
 		 * System.out.println(SocialEntityController.findSocialEntity(social.
 		 * cnpj).email); }
 		 */
+		
+		Env.setEnv("DES");
 
-		/*System.out.println(PaymentRequestController.findPremiumDetail("22737746000115",
-		"732783").chaveAcesso);*/
+		System.out.println(LocationController.findLocations("MUNICIPAL"));
+		
 		
 		//PaymentRequestController.createPayment("1501", "");
 

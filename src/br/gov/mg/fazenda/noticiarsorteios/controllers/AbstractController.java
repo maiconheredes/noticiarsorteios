@@ -8,7 +8,7 @@ import java.util.Locale;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SummaryPremiumsEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
 
-public abstract class AbstractController {
+public abstract class AbstractController {	
 	protected static void configureSweepstake(SweepstakeEntity sweepstake) {
 		sweepstake.dtPrevSorteio = convertDate(sweepstake.dtPrevSorteio);
 		sweepstake.dtPublicacao = convertDate(sweepstake.dtPublicacao);

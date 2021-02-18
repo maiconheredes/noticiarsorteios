@@ -7,22 +7,19 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.security.AuthProvider;
 
-public class RequestController extends AbstractController {
-	public static final String USER = "maicon.lopes";
-	public static final String PASSWORD = "##########";
-	public static final String DOMAIN = "http://hesperides.fazenda.mg.gov.br";
-	//public static final String DOMAIN = "http://notamineira.dnfm.fazenda.mg.gov.br";
-	
+import br.gov.mg.fazenda.noticiarsorteios.utils.Env;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
+
+public class RequestController extends AbstractController {	
 	public static String request(String url, int port, String method, String body) {
 		try {
 			URL urlInstance;
 			
-			if (port == 80) {
-				urlInstance = new URL(DOMAIN + "/" + url);
+			if (Env.getEnv() != "DES") {
+				urlInstance = new URL(Routes.domain() + "/" + url);
 			} else {
-				urlInstance = new URL(DOMAIN + ":" + port + "/" + url);
+				urlInstance = new URL(Routes.domain() + ":" + port + "/" + url);
 			}
 			
 			HttpURLConnection connection = (HttpURLConnection) urlInstance.openConnection();

@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.entities.PremiumEntity;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
 
 public class PremiumController extends AbstractController {
 	public static ArrayList<PremiumEntity> findPremiums(String idSweepstake, String idLocation) {
 		String response = RequestController.request(
-			"sorteios/" + idSweepstake + "/premiacoes/" + idLocation, 
+			Routes.premiumsByLocation()
+				.replace("{idSweepstake}", idSweepstake)
+				.replace("{idLocation}", idLocation),
 			8087, "GET", ""
 		);
 		PremiumEntity[] originalPremiums = new Gson().fromJson(response, PremiumEntity[].class);

@@ -11,12 +11,13 @@ import br.gov.mg.fazenda.noticiarsorteios.entities.PaymentRequestEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.PremiumDetailEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.PremiumEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SocialEEntity;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
 
 public class PaymentRequestController extends AbstractController {
 	public static ArrayList<BankEntity> findBanks() {
 		ArrayList<BankEntity> banks = new ArrayList<BankEntity>();
 		
-		String response = RequestController.request("pagamentos/bancos", 8095, "GET", "");
+		String response = RequestController.request(Routes.paymentsBanks(), 8095, "GET", "");
 		
 		BankEntity[] result = new Gson()
 				.fromJson(response, BankEntity[].class);
@@ -39,7 +40,9 @@ public class PaymentRequestController extends AbstractController {
 		PremiumDetailEntity premiumDetail = new PremiumDetailEntity();
 		
 		String response1 = RequestController.request(
-			"sorteios/premiado/entidadesocial/" + cnpj + "/" + cdRequisicao,
+			Routes.socialEntityAwarded()
+				.replace("{cnpj}", cnpj)
+				.replace("{cdRequisicao}", cdRequisicao),
 			8087, "GET", ""
 		);
 		
@@ -48,7 +51,9 @@ public class PaymentRequestController extends AbstractController {
 		
 		if (socialE != null) {
 			String response2 = RequestController.request(
-				"sorteios/premiado/entidadesocial/detalhe/" + cnpj + "/" + socialE.idPremiado,
+				Routes.socialEntityAwardedDetail()
+					.replace("{cnpj}", cnpj)
+					.replace("{idPremiado}", socialE.idPremiado),
 				8087, "GET", ""
 			);
 				
@@ -80,7 +85,7 @@ public class PaymentRequestController extends AbstractController {
 		pgtoPremioDTO += "}";
 		
 		try {
-			response = RequestController.request("pagamentos", 8095, "POST", pgtoPremioDTO);
+			response = RequestController.request(Routes.payments(), 8095, "POST", pgtoPremioDTO);
 		} catch (Exception exception) {
 			return false;
 		}

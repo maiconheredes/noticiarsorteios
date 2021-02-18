@@ -4,13 +4,14 @@ import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.entities.ResultSocialEEntity;
 import br.gov.mg.fazenda.noticiarsorteios.entities.SocialEEntity;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
 
 public class SocialEntityController extends AbstractController {
 	public static ResultSocialEEntity findSocialEntities(
 		String idLocalidade, String cdRegiaoFiscal,
 		String nmEntidadeSocial, String page
 	) {
-		String url = "entidadessociais";
+		String url = Routes.socialEntities();
 		
 		url += "?idLocalidade=" + idLocalidade;
 		url += "&cdRegiaoFiscal=" + cdRegiaoFiscal;
@@ -26,7 +27,10 @@ public class SocialEntityController extends AbstractController {
 	}
 	
 	public static SocialEEntity findSocialEntity(String cnpj) {
-		String response = RequestController.request("entidadessociais/" + cnpj, 8085, "GET", "");
+		String response = RequestController.request(
+			Routes.findSocialEntity().replace("{cnpj}", cnpj), 
+			8085, "GET", ""
+		);
 		
 		SocialEEntity socialEntity = new Gson().fromJson(response, SocialEEntity.class);
 		

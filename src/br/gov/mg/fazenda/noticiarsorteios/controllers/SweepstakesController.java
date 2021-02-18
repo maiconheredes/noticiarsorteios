@@ -6,11 +6,14 @@ import java.util.HashMap;
 import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
+import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
 
 public class SweepstakesController extends AbstractController {
 	public static HashMap<String, ArrayList<SweepstakeEntity>> findSweepstakes(String month, String year) {
-		String response = RequestController.request("sorteios/periodo/" + year + "/" + month, 8087, "GET", "");
-		//String response = RequestController.request("sorteiodoc/sorteios/periodo/" + year + "/" + month, 80);
+		String response = RequestController.request(
+			Routes.findSweepstakes().replace("{year}", year).replace("{month}", month), 
+			8087, "GET", ""
+		);
 
 		SweepstakeEntity[] sweepstakes = new Gson().fromJson(response, SweepstakeEntity[].class);
 		
