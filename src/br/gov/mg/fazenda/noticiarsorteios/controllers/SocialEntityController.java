@@ -1,5 +1,7 @@
 package br.gov.mg.fazenda.noticiarsorteios.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.google.gson.Gson;
 
 import br.gov.mg.fazenda.noticiarsorteios.entities.ResultSocialEEntity;
@@ -9,7 +11,8 @@ import br.gov.mg.fazenda.noticiarsorteios.utils.Routes;
 public class SocialEntityController extends AbstractController {
 	public static ResultSocialEEntity findSocialEntities(
 		String idLocalidade, String cdRegiaoFiscal,
-		String nmEntidadeSocial, String page
+		String nmEntidadeSocial, String page,
+		HttpServletRequest request
 	) {
 		String url = Routes.socialEntities();
 		
@@ -19,17 +22,17 @@ public class SocialEntityController extends AbstractController {
 		url += "&page=" + page;
 		url += "&size=20";
 		
-		String response = RequestController.request(url, 8085, "GET", "");
+		String response = RequestController.request(url, 8085, "GET", "", request);
 		
 		ResultSocialEEntity result = new Gson().fromJson(response, ResultSocialEEntity.class);
 		
 		return result;
 	}
 	
-	public static SocialEEntity findSocialEntity(String cnpj) {
+	public static SocialEEntity findSocialEntity(String cnpj, HttpServletRequest request) {
 		String response = RequestController.request(
 			Routes.findSocialEntity().replace("{cnpj}", cnpj), 
-			8085, "GET", ""
+			8085, "GET", "", request
 		);
 		
 		SocialEEntity socialEntity = new Gson().fromJson(response, SocialEEntity.class);

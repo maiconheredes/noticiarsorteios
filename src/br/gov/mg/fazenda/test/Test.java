@@ -1,23 +1,9 @@
 package br.gov.mg.fazenda.test;
 
-import java.text.NumberFormat;
-import java.util.Locale;
-
-import com.google.gson.Gson;
-
+import java.sql.Timestamp;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.AbstractController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.LocationController;
-import br.gov.mg.fazenda.noticiarsorteios.controllers.PaymentRequestController;
-import br.gov.mg.fazenda.noticiarsorteios.controllers.PremiumController;
-import br.gov.mg.fazenda.noticiarsorteios.controllers.RequestController;
-import br.gov.mg.fazenda.noticiarsorteios.controllers.SocialEntityController;
 import br.gov.mg.fazenda.noticiarsorteios.controllers.SweepstakesController;
-import br.gov.mg.fazenda.noticiarsorteios.entities.LocationEntity;
-import br.gov.mg.fazenda.noticiarsorteios.entities.PremiumEntity;
-import br.gov.mg.fazenda.noticiarsorteios.entities.ResultSocialEEntity;
-import br.gov.mg.fazenda.noticiarsorteios.entities.SocialEEntity;
-import br.gov.mg.fazenda.noticiarsorteios.entities.SummaryPremiumsEntity;
-import br.gov.mg.fazenda.noticiarsorteios.entities.SweepstakeEntity;
 import br.gov.mg.fazenda.noticiarsorteios.utils.Env;
 
 public class Test extends AbstractController {
@@ -68,7 +54,9 @@ public class Test extends AbstractController {
 		
 		Env.setEnv("DES");
 
-		System.out.println(LocationController.findLocations("MUNICIPAL"));
+		//System.out.println(LocationController.findLocations("MUNICIPAL", null).size());
+		
+		System.out.println(SweepstakesController.findSweepstakes("4", "2020", "12", null).size());
 		
 		
 		//PaymentRequestController.createPayment("1501", "");

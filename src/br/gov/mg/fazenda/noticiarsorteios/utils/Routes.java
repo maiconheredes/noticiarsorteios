@@ -1,9 +1,5 @@
 package br.gov.mg.fazenda.noticiarsorteios.utils;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 public class Routes {
 	public static String cities() {
 		switch (Env.getEnv()) {
@@ -11,10 +7,10 @@ public class Routes {
 				return "municipiosregioesfiscais";
 
 			case "HOM":
-				return "regiaofiscaldoc/municipiosregioesfiscais";
+				return "municipiosregioesfiscais";
 
 			case "PRO":
-				return "regiaofiscaldoc/municipiosregioesfiscais";
+				return "municipiosregioesfiscais";
 			
 			default:
 				return "";
@@ -27,10 +23,10 @@ public class Routes {
 				return "regioesfiscais";
 
 			case "HOM":
-				return "regiaofiscaldoc/regioesfiscais";
+				return "regioesfiscais";
 
 			case "PRO":
-				return "regiaofiscaldoc/regioesfiscais";
+				return "regioesfiscais";
 			
 			default:
 				return "";
@@ -133,6 +129,22 @@ public class Routes {
 		}
 	}
 	
+	public static String sweepstakes() {
+		switch (Env.getEnv()) {
+			case "DES":
+				return "sorteios";
+
+			case "HOM":
+				return "sorteios";
+
+			case "PRO":
+				return "sorteios";
+			
+			default:
+				return "";
+		}
+	}
+	
 	public static String findSocialEntity() {
 		switch (Env.getEnv()) {
 			case "DES":
@@ -171,7 +183,7 @@ public class Routes {
 				return "http://hesperides.fazenda.mg.gov.br";
 	
 			case "HOM":
-				return "http://notamineira.dnfm.fazenda.mg.gov.br";
+				return "http://nfm.fazenda.mg.gov.br";
 	
 			case "PRO":
 				return "http://notamineira.dnfm.fazenda.mg.gov.br";
